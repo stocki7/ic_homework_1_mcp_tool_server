@@ -1,0 +1,45 @@
+Starte MCP-Server als Subprozess: D:\Industrial Computing\Github Repo Homework\homework-1-mcp-tool-server\server.py
+Mit MCP-Server verbunden.
+
+Gefundene Tools: ['lookup_inventory', 'calculate_tiered_discount', 'log_audit_event']
+
+[Reasoning] LLM wird abgefragt ...
+[Action] Rufe MCP-Tool 'lookup_inventory' auf mit {'query': 'Servomotor 750W'}
+[Observation] Ergebnis vom MCP Server: [{"sku":"SKU-1004","name":"Servomotor 750W","category":"Automatisierung","quantity_on_hand":65,"unit_price":412.5}]
+
+[Reasoning] LLM wird abgefragt ...
+[Action] Rufe MCP-Tool 'calculate_tiered_discount' auf mit {'order_volume': 650, 'unit_price': 412.5}
+[Observation] Ergebnis vom MCP Server: {"order_volume":650,"unit_price":412.5,"subtotal":268125.0,"total_discount_amount":24750.0,"effective_discount_rate":0.0923,"final_price":243375.0,"tier_breakdown":[{"tier_range":"0-49","rate":0.0,"units_in_tier":50,"discount_amount":0.0},{"tier_range":"50-199","rate":0.05,"units_in_tier":150,"discount_amount":3093.75},{"tier_range":"200-499","rate":0.1,"units_in_tier":300,"discount_amount":12375.0},{"tier_range":"500-999","rate":0.15,"units_in_tier":150,"discount_amount":9281.25}]}
+
+[Reasoning] LLM wird abgefragt ...
+[Action] Rufe MCP-Tool 'log_audit_event' auf mit {'event_type': 'INVENTORY_LOOKUP_AND_DISCOUNT_CALCULATION', 'details': 'Abfrage Lagerbestand Servomotor 750W (SKU-1004: 65 Stück) sowie Berechnung Staffelrabatt für 650 Stück (Listenpreis: 268.125,00 €, Rabatt: 24.750,00 €, Endpreis: 243.375,00 €).'}
+[Observation] Ergebnis vom MCP Server: {"status":"protokolliert","entry":{"timestamp":"2026-10-18T21:38:09.208461+00:00","event_type":"INVENTORY_LOOKUP_AND_DISCOUNT_CALCULATION","details":"Abfrage Lagerbestand Servomotor 750W (SKU-1004: 65 Stück) sowie Berechnung Staffelrabatt für 650 Stück (Listenpreis: 268.125,00 €, Rabatt: 24.750,00 €, Endpreis: 243.375,00 €)."}}
+
+[Reasoning] LLM wird abgefragt ...
+
+--- Endgültige Antwort ---
+Hier sind die gewünschten Informationen zum **Servomotor 750W** (SKU: `SKU-1004`):
+
+### 1. Lagerbestand
+* **Aktueller Bestand:** 65 Stück
+* **Einzelpreis (Listenpreis):** 412,50 €
+
+---
+
+### 2. Rabatt- und Preisberechnung (für 650 Stück)
+*(Hinweis: Die angefragte Bestellmenge von 650 Stück übersteigt den derzeitigen Lagerbestand von 65 Stück.)*
+
+* **Gesamtsumme vor Rabatt (Listenpreis):** 268.125,00 €
+* **Staffelrabatt (Gesamtrabatt):** 24.750,00 €
+  * *Effektiver Rabattsatz:* ca. 9,23 %
+  * *Aufschlüsselung nach Stufen:*
+    * Einheiten 1–49 (0 % Rabatt): 0,00 €
+    * Einheiten 50–199 (5 % Rabatt): 3.093,75 €
+    * Einheiten 200–499 (10 % Rabatt): 12.375,00 €
+    * Einheiten 500–650 (15 % Rabatt): 9.281,25 €
+* **Endpreis:** **243.375,00 €**
+
+---
+
+### 3. Audit-Eintrag
+Ein entsprechender Audit-Eintrag zur Lagerabfrage und Rabattberechnung wurde erfolgreich im System protokolliert.

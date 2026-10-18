@@ -1,0 +1,11 @@
+[project]
+name = "homework-1-mcp-tool-server"
+version = "0.1.0"
+description = "Homework Part 1, Option A - Custom MCP Math & Database Tool Server (Industrial Computing)"
+requires-python = ">=3.11"
+dependencies = [
+    "fastmcp>=3.4.4",
+    "mcp>=1.27.0",
+    "openai>=2.46.0",
+    "python-dotenv>=1.2.2",
+]
